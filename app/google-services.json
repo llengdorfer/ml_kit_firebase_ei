@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "877964378918",
+    "firebase_url": "https://fir-ei-default-rtdb.firebaseio.com",
+    "project_id": "fir-ei",
+    "storage_bucket": "fir-ei.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:877964378918:android:305ed1c46a81d975fb37e7",
+        "android_client_info": {
+          "package_name": "tgm.hit.eurasmus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "877964378918-0q5cabie1l14vst07q0kenjjgoq6oe1u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_RbFm7cjfJP_xBdG-w5CGInTDLvK6xr8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "877964378918-0q5cabie1l14vst07q0kenjjgoq6oe1u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
