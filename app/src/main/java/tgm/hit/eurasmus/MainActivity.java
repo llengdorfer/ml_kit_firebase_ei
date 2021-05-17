@@ -1,24 +1,20 @@
 package tgm.hit.eurasmus;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.ml.naturallanguage.FirebaseNaturalLanguage;
-import com.google.firebase.ml.naturallanguage.smartreply.FirebaseSmartReply;
-import com.google.firebase.ml.naturallanguage.smartreply.FirebaseTextMessage;
-import com.google.firebase.ml.naturallanguage.smartreply.SmartReplySuggestion;
-import com.google.firebase.ml.naturallanguage.smartreply.SmartReplySuggestionResult;
 import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.face.FirebaseVisionFace;
@@ -32,31 +28,33 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private Bitmap picture;
+    private ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        imageView = findViewById(R.id.imageView);
     }
+    static final int REQUEST_IMAGE_CAPTURE = 1;
 
-    public void chooseImage() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1);
+    public void chooseImage(View v) {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        try {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        } catch (ActivityNotFoundException e) {
+            // display error state to the user
+        }
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode != RESULT_OK) {
-            return;
-        }
-        if (requestCode == 1) {
-            final Bundle extras = data.getExtras();
-            if (extras != null) {
-                picture = extras.getParcelable("data");
-            }
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Log.d("yo", String.valueOf(data));
+            picture = (Bitmap) extras.get("data");
+            imageView.setImageBitmap(picture);
         }
     }
-    public void analyzeFaces() {
+    public void analyzeFaces(View v) {
         FirebaseVisionFaceDetectorOptions highAccuracyOpts =
                 new FirebaseVisionFaceDetectorOptions.Builder()
                         .setPerformanceMode(FirebaseVisionFaceDetectorOptions.ACCURATE)
@@ -66,20 +64,22 @@ public class MainActivity extends AppCompatActivity {
         FirebaseVisionImage image = null;
         try {
             Context context = null;
-            image = FirebaseVisionImage.fromFilePath(context, Uri.parse("url"));
-        } catch (IOException e) {
+            image = FirebaseVisionImage.fromBitmap(picture);
+        } catch (Exception e) {
             e.printStackTrace();
         }
         FirebaseVisionFaceDetector detector = FirebaseVision.getInstance()
                 .getVisionFaceDetector(highAccuracyOpts);
+        Log.d("dn", String.valueOf(image));
         Task<List<FirebaseVisionFace>> result =
                 detector.detectInImage(image)
                         .addOnSuccessListener(
                                 new OnSuccessListener<List<FirebaseVisionFace>>() {
                                     @Override
                                     public void onSuccess(List<FirebaseVisionFace> faces) {
-                                        // Task completed successfully
-                                        // ...
+                                        for(int i = 0; i<faces.size();i++) {
+                                            Log.d("yo", String.valueOf(faces.get(i)));
+                                        }
                                     }
                                 })
                         .addOnFailureListener(

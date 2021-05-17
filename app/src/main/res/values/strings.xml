@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">eurasmus</string>
+    <string name="chooseImage">Choose Image</string>
+    <string name="processInput">Process Input</string>
 </resources>

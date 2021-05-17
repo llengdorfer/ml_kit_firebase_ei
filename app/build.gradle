@@ -27,11 +27,9 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.firebase:firebase-ml-vision:'
-    implementation 'com.google.firebase:firebase-ml-vision-face-model:20.0.1'
-    implementation 'com.google.firebase:firebase-ml-natural-language:22.0.0'
-    implementation 'com.google.firebase:firebase-ml-natural-language-smart-reply-model:20.0.7'
-    implementation platform('com.google.firebase:firebase-bom:27.1.0')
+    implementation 'com.google.android.gms:play-services-vision:20.0.0'
+    //noinspection OutdatedLibrary
+    implementation 'com.google.firebase:firebase-ml-vision:24.0.3'
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
