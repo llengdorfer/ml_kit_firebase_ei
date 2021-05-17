@@ -1,6 +1,8 @@
 package tgm.hit.eurasmus;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.view.View;
 import android.widget.Button;
@@ -29,13 +31,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
+    private Bitmap picture;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
 
+    public void chooseImage() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), 1);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != RESULT_OK) {
+            return;
+        }
+        if (requestCode == 1) {
+            final Bundle extras = data.getExtras();
+            if (extras != null) {
+                picture = extras.getParcelable("data");
+            }
+        }
+    }
     public void analyzeFaces() {
         FirebaseVisionFaceDetectorOptions highAccuracyOpts =
                 new FirebaseVisionFaceDetectorOptions.Builder()
