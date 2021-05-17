@@ -34,10 +34,11 @@
             android:layout_marginRight="175dp" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"/>
     <ImageView
-            android:layout_width="235dp"
+            android:layout_width="wrap_content"
             android:layout_height="241dp" tools:srcCompat="@tools:sample/avatars" android:id="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="84dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="88dp" android:layout_marginStart="88dp"/>
+            android:layout_marginLeft="88dp" android:layout_marginStart="88dp" android:layout_marginEnd="88dp"
+            android:layout_marginRight="88dp" app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
