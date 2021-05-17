@@ -29,11 +29,13 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private Bitmap picture;
     private ImageView imageView;
+    private TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         imageView = findViewById(R.id.imageView);
+        textView = findViewById(R.id.TextView);
     }
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
@@ -80,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                                         for(int i = 0; i<faces.size();i++) {
                                             Log.d("yo", String.valueOf(faces.get(i)));
                                         }
+                                        textView.setText("Probability of Smiling: "+faces.get(0).getSmilingProbability()+"\n Probability of Left Eye being open: "+faces.get(0).getLeftEyeOpenProbability()+"\n Probability of Right Eye being open"+faces.get(0).getRightEyeOpenProbability());
                                     }
                                 })
                         .addOnFailureListener(
