@@ -22,6 +22,6 @@ Include the following lines in your [/app/build.gradle](/app/build.gradle)-file 
 Run your code.
 
 ### Step 3
-Test the app taking selfies with different facial expressions and let your app print out the detected data. That can be done using a Toast or a TextView, the APIs can be found here:
+Test the app by taking selfies with different facial expressions and let your app print out the detected data. That can be done using a Toast or a TextView, the APIs can be found here:
 https://developer.android.com/reference/android/widget/Toast
 https://developer.android.com/reference/android/widget/TextView?hl=en
