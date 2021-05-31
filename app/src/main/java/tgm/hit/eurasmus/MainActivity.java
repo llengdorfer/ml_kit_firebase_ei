@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
-            Log.d("yo", String.valueOf(data));
+            Log.d("datavalue at onActivityResult", String.valueOf(data));
             picture = (Bitmap) extras.get("data");
             imageView.setImageBitmap(picture);
         }
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         }
         FirebaseVisionFaceDetector detector = FirebaseVision.getInstance()
                 .getVisionFaceDetector(highAccuracyOpts);
-        Log.d("dn", String.valueOf(image));
+        Log.d("Image Value at analyzeFaces()", String.valueOf(image));
         Task<List<FirebaseVisionFace>> result =
                 detector.detectInImage(image)
                         .addOnSuccessListener(
