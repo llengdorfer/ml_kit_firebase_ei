@@ -92,9 +92,6 @@ public class MainActivity extends AppCompatActivity {
                                 new OnSuccessListener<List<FirebaseVisionFace>>() {
                                     @Override
                                     public void onSuccess(List<FirebaseVisionFace> faces) {
-                                        for(int i = 0; i<faces.size();i++) {
-                                            Log.d("yo", String.valueOf(faces.get(i)));
-                                        }
                                         textView.setText("Probability of Smiling: "+faces.get(0).getSmilingProbability()+"\n Probability of Left Eye being open: "+faces.get(0).getLeftEyeOpenProbability()+
                                                 "\n Probability of Right Eye being open"+faces.get(0).getRightEyeOpenProbability());    //Output of the Values into the TextView
                                     }
