@@ -5,7 +5,7 @@ After finishing both the deployment and the first task, you can now move on to a
 The first step in this exercise is to again clone a remote project.
 File -> New -> Project from Version Control... -> https://github.com/llengdorfer/ml_kit_firebase_ei/tree/face_vision
 ## Code Explanation
-With the FirebaseVisionFaceDetectorOptions class you can select the options you want the Face Detector to function on. 
+With the FirebaseVisionFaceDetectorOptions object you can select the options you want the Face Detector to function on. 
 Optionally you can play around with the settings and choose different constants to influence the detection.
 ```
 FirebaseVisionFaceDetectorOptions highAccuracyOpts =
@@ -20,7 +20,7 @@ The chooseImage() method takes you to the camera to take a picture.
 ```
 Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 ```
-The actual Face Detector itself is present in the analyzeFaces() class. 
+The actual Face Detector itself is present in the analyzeFaces() method. 
 ```
         Task<List<FirebaseVisionFace>> result =
                 detector.detectInImage(image)
@@ -51,7 +51,7 @@ faces.get(0).getSmilingProbability() + " is a float"
   You can read through the following link for more information and context.
   https://developer.android.com/reference/android/widget/Toast
 #### TextView
-  There already is a TextView provided in the project. Its reference is accesible by ``textView``.
+  There already is a TextView object provided in the project. Its reference is accessible by ``textView``.
   To change the Text of a TextView you use the setText() method and again where the text "String" is you can specify the things you want to print out.
   ```
   textView.setText("String");
